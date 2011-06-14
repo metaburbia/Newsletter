@@ -21,8 +21,8 @@ class MyClass(object):
 import smtplib
 
 SERVER = "localhost"
-FROM = "david@cloudsoup.com"
-TO = ["david.jones@cloudsoup.com"] # must be a list
+FROM = "xxxxxxxxxxxxxxx"
+TO = ["xxxxxxxxxxxxxxxxx"] # must be a list
 SUBJECT = "Hello!"
 TEXT = "This message was sent with Python's smtplib"
 message = """\
@@ -47,10 +47,9 @@ server = smtplib.SMTP('smtp.gmail.com',587) #port 465 or 587
 server.ehlo()
 server.starttls()
 server.ehlo()
-server.login('cloudsoup@gmail.com','j0neZjabber!!!')
-#server.login('cloudsoup@gmail.com','j0neZjabber!!!')
-FROM = "admin@cloudsoup.com"
-TO = ["david.jones@cloudsoup.com"] # must be a list
+server.login('myemail@gmail.com','mypassword')
+FROM = "xxxxxxx"
+TO = ["xxxxxxxxx"] # must be a list
 SUBJECT = "Hello!"
 TEXT = "This message was sent with Python's smtplib."
 message = """\
