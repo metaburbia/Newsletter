@@ -7,8 +7,8 @@ def createCountdown(daysRemaining):
     text=str(daysRemaining)
     textsize = myfont.getsize(text)
     
-    im_x = myfont.getsize(text)[0] + 0
-    im_y = myfont.getsize(text)[1] + 1
+    im_x = myfont.getsize(text)[0] + 20
+    im_y = myfont.getsize(text)[1] - 4
     
     xpos = im_x / 2  - myfont.getsize(text)[0] / 2
     ypos = im_y / 2  - myfont.getsize(text)[1] / 2

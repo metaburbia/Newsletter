@@ -36,27 +36,30 @@ def ordinal(n):
 def getMainCityDetails(cityname):
     weather = oWeather.getWeather(cityname)
     strHumidity = weather['current_conditions']['humidity'].split()
-    narr = '<h2>What''s ' + cityname + ' Doing?</h2>\
-<p>In ' + cityname + ' the last time we checked \
+    narr = '<h2 id="narrh">What''s ' + cityname + ' Doing?</h2>\
+<p class="narr">In ' + cityname + ' the last time we checked \
 the temperature was  ' + weather['current_conditions']['temp_f'] + '&deg;F\
 , humidity was ' + strHumidity[1] + ' &#8212;  and\
  it was ' +  (weather['current_conditions']['condition']).lower() + '</p>'
 
     return narr
 
-
+def daysToGo():
+    flyTime = datetime.strptime(flytime.FlightTime,'%Y-%m-%d')
+    currentDateTime = datetime.now() 
+    return (flyTime - currentDateTime).days 
+    
 def getNewsletterIntro():
     weather = oWeather.getWeather('Denver')
     forecastTimeString = weather['forecast_information']['forecast_date']
     forecastTime = datetime.strptime(forecastTimeString,'%Y-%m-%d')
     forecastDayNum  = int(forecastTime.strftime("%d"))
-    newsletter.FlyTime = datetime.strptime(newsletter.FlightTime,'%Y-%m-%d')
+    newsletterTime = datetime.strptime(flytime.FlightTime,'%Y-%m-%d')
     flyTime = datetime.now()
     diff = flyTime - newsletterTime
     intro = 'It''s ' +  forecastTime.strftime("%A") +  ' ' + ordinal(forecastDayNum) + ' of ' + forecastTime.strftime("%B") + ',\
- '+ str(diff.days) + ' days\
+ '+ str(daysToGo()) + ' days\
  until you fly to Denver'
-    print weather
     return intro
     
 def createWeatherTable():
@@ -69,10 +72,10 @@ def createWeatherTable():
     for i in range(0,3):
         header = '<th>' + header + '<th>' 
         
-    for forecast in weather['forecasts']:
+    for forecast in weather['forecasts'][1:4]:
         header = header + '<th>' + forecast['day_of_week'] + '</th>'
     header = header + '</tr>'
-    table = '<table>' 
+    table = '<table id="tbw">' 
     table=table+header
     
     for key, value in weatherLocations.items():
@@ -80,9 +83,9 @@ def createWeatherTable():
         table = table + '<tr>'
         table = table + '<td>' + value + '</td>'
         table = table + '<td>' + weather['current_conditions']['temp_f'] + '&deg;F</td>'
-        table = table + '<td>' + weather['current_conditions']['condition'] + '</td>'
-        for forecast in weather['forecasts']:
-            table = table + '<td>' +  forecast['high'] + '&deg;F</td>'
+        table = table + '<td class="cond">' + weather['current_conditions']['condition'] + '</td>'
+        for forecast in weather['forecasts'][1:4]:
+            table = table + '<td class="temp">' +  forecast['high'] + '&deg;F</td>'
         table = table + '</tr>' 
     table = table + '</table>'
     return table
@@ -105,7 +108,7 @@ currency.convert('GBP', "&pound;", 'USD', '$')
 
 writeFile('currency.inc',currency.convert('GBP', "&pound;", 'USD', '$'))
 
-images.createCountdown(32)
+images.createCountdown(daysToGo())
 
 '''
 denverWeather = oWeather.getWeather('Denver')

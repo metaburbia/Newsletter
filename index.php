@@ -21,6 +21,8 @@
    font-size : 9pt;
    }
    
+
+   
 td.mainbar h2 {
 	font-family: Georgia;
 	font-size: 18px;
@@ -77,6 +79,24 @@ table.sidebar p.miniheader {
 	visibility: hidden;
 	height: 0;
 }
+
+   .narr {
+   	font-size : 1.4em;
+   }
+   #narrh {
+   	font-size : 2.0em;
+   }	
+   #tbw * {
+   	font-size : 0.92em;
+   }
+    #tbw td.cond {
+   	font-style : italic;
+
+   }
+     #tbw td.temp {
+   		padding-left : 4px;
+
+   }
    </style>
 </head>
 <body>
@@ -93,8 +113,8 @@ table.sidebar p.miniheader {
                      <tr>
                      <td >
                          <h2>Hols are getting closer</h2>
-                         <p style="font-size:1.4em;">
-                                                     <img src="countdown.png" />
+                         <p style="font-size:1.6em;">
+                                                     <img align="middle"   style="display: inline; float:left; margin-right : 8px;"  src="countdown.png" />
                          <!-- <img align="middle" src="http://development.cloudsoup.com/holiday/htdocs/img/daysleft.php?s=44&m=12" style="display: inline; float:left; margin-right : 8px;" />
  -->                           
 <?php include('intro.inc');?>					
@@ -103,7 +123,7 @@ table.sidebar p.miniheader {
                      </tr>
                      <tr>
                         <td width="336" align="left" valign="top" class="mainbar">
-<?php include('narrative.inc');?>
+							<?php include('narrative.inc');?>
                            
 							<!-- 
 							<img src="http://development.cloudsoup.com/holiday/htdocs/img/pics/216309929_dd7d58425c.jpg" />

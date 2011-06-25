@@ -62,7 +62,7 @@ class weather(object):
     
         weather_data['forecasts'] = forecasts    
         dom.unlink()
-    
+        print weather_data
         return weather_data
     
     def getChattyWeather(self,location_id, location_string = ''):
