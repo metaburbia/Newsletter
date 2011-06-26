@@ -21,8 +21,16 @@
    font-size : 9pt;
    }
    
-
-   
+	a {
+		text-decoration : none;
+		color : #000000;
+		
+	}
+  	a:hover {
+		text-decoration : underline;
+		color : #000000;
+		
+	}
 td.mainbar h2 {
 	font-family: Georgia;
 	font-size: 18px;
@@ -97,6 +105,15 @@ table.sidebar p.miniheader {
    		padding-left : 4px;
 
    }
+   #newsm * dd {
+   	margin-left:0px;
+   	padding-left : 0px;
+   }
+    #newsm * dt {
+   	margin-top:1em;
+   	font-weight:bold;
+
+   }
    </style>
 </head>
 <body>
@@ -128,20 +145,21 @@ table.sidebar p.miniheader {
 							<!-- 
 							<img src="http://development.cloudsoup.com/holiday/htdocs/img/pics/216309929_dd7d58425c.jpg" />
                             -->
-
+<div id="newsm">
                            <h2>And Elsewhere?</h2>
                          
 <?php 
 include('weatherTable.inc');
 ?>     		
-<?php 
-include('saltlake.inc');
-?>     				
+ 				
      					
      						<h2>News from round and about</h2>
-     						
-     					<?php include('localnews.inc');?>                        
-     						
+     			<?php 
+include('saltlake.inc');
+?>    
+     			
+     			     					<?php include('wyoming.inc');?>                        
+ </div>			
      						</td>                        
                         <td width="240" valign="top">
                            <h4 class="meta">Exchange Rate</h4>                           

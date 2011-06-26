@@ -1,7 +1,9 @@
+import sys
 from newsletter import news
 from newsletter import weather
 from newsletter import currency
 from newsletter import images
+from newsletter import flickr
 
 from newsletter import flytime
 from datetime import datetime
@@ -99,6 +101,9 @@ def createWeatherTable():
     table = table + '</table>'
     return table
 
+flickr.getFlickr()  
+
+sys.exit('')
 
 intro = getNewsletterIntro()
 writeFile('intro.inc',intro)
@@ -117,6 +122,9 @@ oNews = news.news()
 for key in newsrssfeeds.newsfeeds:
     item =  newsrssfeeds.newsfeeds[key]
     writeFile(item['outputfile'],oNews.getNews(item['url'],int(item['items'])))
+
+ 
+
               
               
               
