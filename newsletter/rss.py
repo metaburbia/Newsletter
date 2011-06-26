@@ -5,7 +5,7 @@ Created on 11 Jun 2011
 '''
 import urllib2, feedparser
 
-class RSSFeed():
+class RSSFeed:
     '''
     classdocs
     '''

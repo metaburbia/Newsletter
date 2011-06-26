@@ -45,16 +45,23 @@ the temperature was  ' + weather['current_conditions']['temp_f'] + '&deg;F\
     return narr
 
 def daysToGo():
-    flyTime = datetime.strptime(flytime.FlightTime,'%Y-%m-%d')
+
+    flyTime = datetime(*(time.strptime(flytime.FlightTime, "%Y-%m-%d")[0:6]))
+    #flyTime = datetime.strptime(flytime.FlightTime,'%Y-%m-%d')
     currentDateTime = datetime.now() 
     return (flyTime - currentDateTime).days 
     
 def getNewsletterIntro():
     weather = oWeather.getWeather('Denver')
     forecastTimeString = weather['forecast_information']['forecast_date']
-    forecastTime = datetime.strptime(forecastTimeString,'%Y-%m-%d')
+
+    forecastTime = datetime(*(time.strptime(forecastTimeString, "%Y-%m-%d")[0:6]))
+    #forecastTime = datetime.strptime(forecastTimeString,'%Y-%m-%d')
+    
     forecastDayNum  = int(forecastTime.strftime("%d"))
-    newsletterTime = datetime.strptime(flytime.FlightTime,'%Y-%m-%d')
+    
+    newsletterTime = datetime(*(time.strptime(flytime.FlightTime, "%Y-%m-%d")[0:6]))
+    #newsletterTime = datetime.strptime(flytime.FlightTime,'%Y-%m-%d')
     flyTime = datetime.now()
     diff = flyTime - newsletterTime
     intro = 'It''s ' +  forecastTime.strftime("%A") +  ' ' + ordinal(forecastDayNum) + ' of ' + forecastTime.strftime("%B") + ',\
