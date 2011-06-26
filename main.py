@@ -2,9 +2,11 @@ from newsletter import news
 from newsletter import weather
 from newsletter import currency
 from newsletter import images
+
 from newsletter import flytime
 from datetime import datetime
 import time
+import newsrssfeeds
 
 
 oRSS = news.news()
@@ -73,7 +75,7 @@ def createWeatherTable():
     # get the first row to extact the # of forecasts
     firstkey = weatherLocations.items()[0][0]
     weather = oWeather.getWeather(firstkey)
-
+    print weather
     forecastsLength = len(weather['forecasts'])
     header = '<tr>'
     for i in range(0,3):
@@ -96,60 +98,25 @@ def createWeatherTable():
         table = table + '</tr>' 
     table = table + '</table>'
     return table
-'''
 
-for loc in weatherLocations:
-   print loc.values()
- '''
+
 intro = getNewsletterIntro()
 writeFile('intro.inc',intro)
- 
-table = createWeatherTable()
-writeFile('weatherTable.inc',table)
+
+images.createCountdown(daysToGo())
 
 getMainCityDetails('Denver')
 writeFile('narrative.inc',getMainCityDetails('Denver'))
 
-currency.convert('GBP', "&pound;", 'USD', '$')
-
-
 writeFile('currency.inc',currency.convert('GBP', "&pound;", 'USD', '$'))
 
-images.createCountdown(daysToGo())
+table = createWeatherTable()
+writeFile('weatherTable.inc',table)
 
-'''
-denverWeather = oWeather.getWeather('Denver')
-print denverWeather
-print denverWeather['current_conditions']['temp_f']
-print denverWeather['current_conditions']['temp_c']
-print denverWeather['current_conditions']['humidity']
-print denverWeather['current_conditions']['condition']
-
-print denverWeather['forecasts']
-for forecast in denverWeather['forecasts']:
-    print forecast['day_of_week']
-    print forecast['high']
-    print forecast['low']
-    print forecast['condition']
-'''
-'''
-denverWeather = oWeather.getChattyWeather('Denver')
-print denverWeather
-
-casperWeather = oWeather.getChattyWeather('Casper', 'Casper, Wyoming')
-print casperWeather
-
-saltLakeWeather = oWeather.getChattyWeather('Salt+Lake+City','Salt Lake City')
-print saltLakeWeather
-
-denverWeather = oWeather.getWeather('Denver')
-
-print denverWeather
-
-for forecast in denverWeather['forecasts']:
-    print forecast['day_of_week']
-    print forecast['high']
-    print forecast['low']
-    print forecast['condition']
-    print forecast
-    '''
+oNews = news.news()
+for key in newsrssfeeds.newsfeeds:
+    item =  newsrssfeeds.newsfeeds[key]
+    writeFile(item['outputfile'],oNews.getNews(item['url'],int(item['items'])))
+              
+              
+              

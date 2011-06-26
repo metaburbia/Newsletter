@@ -133,11 +133,14 @@ table.sidebar p.miniheader {
                          
 <?php 
 include('weatherTable.inc');
-?>     					
+?>     		
+<?php 
+include('saltlake.inc');
+?>     				
      					
      						<h2>News from round and about</h2>
      						
-     					<?php include('strangenews.inc');?>                        
+     					<?php include('localnews.inc');?>                        
      						
      						</td>                        
                         <td width="240" valign="top">
