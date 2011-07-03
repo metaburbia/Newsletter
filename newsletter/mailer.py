@@ -67,7 +67,7 @@ def createhtmlmail (html, text, subject):
 if __name__=="__main__":
     import smtplib
     import mailcon
-    f = open("../mailfile.txt", 'r')
+    f = open("mailfile.txt", 'r')
     html = f.read()
     f.close()
     #f = open("newsletter.txt", 'r')
