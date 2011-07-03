@@ -8,7 +8,7 @@
 <html>
 <head>
    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>-19 days to Seattle</title>
+	<title>US Holiday 2011</title>
 
    <style>
 
@@ -154,9 +154,7 @@ include('weatherTable.inc');
  				
      					
      						<h2>News from round and about</h2>
-     			<?php 
-include('saltlake.inc');
-?>    
+   
      			
      			     					<?php include('wyoming.inc');?>                        
  </div>			
@@ -172,12 +170,7 @@ include('saltlake.inc');
                               <tr>
                                  <td>
                                  	<h4 class="meta">Some photos for your delight</h4>
- 									<!--  <table><tr><td align="center" valign="top" width="240px">
- 									
- 									<a href="http://www.flickr.com/photos/26955787@N02/3811523302/" />
- 									<img src="http://farm4.static.flickr.com/3477/3811523302_4f0d0f9509_m.jpg" /></a>
- 									</td></tr><tr><td align="center" valign="top" width="240px"><a href="http://www.flickr.com/photos/15054649@N00/3810154911/" /><img src="http://farm4.static.flickr.com/3464/3810154911_1b91f9d9aa_m.jpg" /></a></td></tr><tr><td align="center" valign="top" width="240px"><a href="http://www.flickr.com/photos/maxworld75/3810148575/" /><img src="http://farm4.static.flickr.com/3262/3810148575_e4d7947894_m.jpg" /></a></td></tr></table>                                  
-                                 -->
+
                                  <?php include('flickr.inc');?>
                                  </td>
                               </tr>

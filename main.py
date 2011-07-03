@@ -77,7 +77,6 @@ def createWeatherTable():
     # get the first row to extact the # of forecasts
     firstkey = weatherLocations.items()[0][0]
     weather = oWeather.getWeather(firstkey)
-    print weather
     forecastsLength = len(weather['forecasts'])
     header = '<tr>'
     for i in range(0,3):
@@ -102,8 +101,14 @@ def createWeatherTable():
     return table
 
   
+
+    
+    
+    
+    
+    
 writeFile('flickr.inc',flickr.getFlickr())
-sys.exit('')
+
 intro = getNewsletterIntro()
 writeFile('intro.inc',intro)
 images.createCountdown(daysToGo())
@@ -121,6 +126,7 @@ for key in newsrssfeeds.newsfeeds:
     item =  newsrssfeeds.newsfeeds[key]
     writeFile(item['outputfile'],oNews.getNews(item['url'],int(item['items'])))
 
+ 
  
 
               
