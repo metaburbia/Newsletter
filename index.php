@@ -131,6 +131,8 @@ table.sidebar p.miniheader {
                      <td >
                          <h2>Hols are getting closer</h2>
                          <p style="font-size:1.6em;">
+                          <img align="middle"   style="display: inline; float:left; margin-right : 8px;"  src="cid:image1" />
+                         
                                                      <img align="middle"   style="display: inline; float:left; margin-right : 8px;"  src="countdown.png" />
                          <!-- <img align="middle" src="http://development.cloudsoup.com/holiday/htdocs/img/daysleft.php?s=44&m=12" style="display: inline; float:left; margin-right : 8px;" />
  -->                           

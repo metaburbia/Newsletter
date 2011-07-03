@@ -4,6 +4,7 @@ def createhtmlmail (html, text, subject):
     import MimeWriter
     import mimetools
     import cStringIO
+    from email.MIMEImage import MIMEImage
 
 
     
@@ -39,6 +40,14 @@ def createhtmlmail (html, text, subject):
     #
     subpart = writer.nextpart()
     subpart.addheader("Content-Transfer-Encoding", "quoted-printable")
+    #
+    #    get the countdown image
+    #
+    fp = open('../countdown.png', 'rb')
+    msgImage = MIMEImage(fp.read())
+    fp.close()
+    msgImage.add_header('Content-ID', '<image1>')
+    subpart.attach(msgImage)
     #
     # returns us a file-ish object we can write to
     #
