@@ -2,7 +2,10 @@ import smtplib
 import mailcon
 
 
-def sendmail(msg):
+def sendmail(filename):
+    fh = open(filename, "r")
+    msg = fh.read()
+    fh.close()
     server = smtplib.SMTP('smtp.gmail.com',587) #port 465 or 587
     server.ehlo()
     server.starttls()
