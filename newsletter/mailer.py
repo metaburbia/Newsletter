@@ -1,6 +1,6 @@
 import smtplib
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
+from email.MIMEMultipart import MIMEMultipart
+from email.MIMEText import MIMEText
 import mailcon
 
 
@@ -22,7 +22,7 @@ def sendmail(filename):
     msg['Subject'] = "Holiday Newsletter"
     msg['From'] = mailcon.mailfrom
     msg['To'] = mailcon.mailto
-    part1 = MIMEText(msg, 'plain')
+    part1 = MIMEText('sdasd', 'plain')
     part2 = MIMEText(msg, 'html')
     msg.attach(part1)
     msg.attach(part2)
