@@ -43,7 +43,7 @@ def createhtmlmail (html, text, subject):
     #
     #    get the countdown image
     #
-    fp = open('../countdown.png', 'rb')
+    fp = open('countdown.png', 'rb')
     msgImage = MIMEImage(fp.read())
     fp.close()
     msgImage.add_header('Content-ID', '<image1>')
