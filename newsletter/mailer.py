@@ -47,7 +47,7 @@ def createhtmlmail (html, text, subject):
     msgImage = MIMEImage(fp.read())
     fp.close()
     msgImage.add_header('Content-ID', '<image1>')
-    subpart.attach(msgImage)
+    writer.attach(msgImage)
     #
     # returns us a file-ish object we can write to
     #
