@@ -1,11 +1,9 @@
-from email.MIMEMultipart import MIMEMultipart
-from email.MIMEText import MIMEText
-from email.MIMEImage import MIMEImage
 import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 import mailcon
-# Define these once; use them twice!
-strFrom = 'from@example.com'
-strTo = 'to@example.com'
+
+
 
 
 
@@ -20,27 +18,14 @@ def sendmail(filename):
     server.login(mailcon.mailuser,mailcon.mailpassword)
     
     # Create the root message and fill in the from, to, and subject headers
-    msgRoot = MIMEMultipart('related')
-    msgRoot['Subject'] = 'Holiday newsletter'
-    msgRoot['From'] =  mailcon.mailfrom
-    msgRoot['To'] = mailcon.mailto
-    msgRoot.preamble = 'This is a multi-part message in MIME format.'
-    msgAlternative = MIMEMultipart('alternative')
-    msgRoot.attach(msgAlternative)
-    msgText = MIMEText(msg)
-    msgAlternative.attach(msgText)
-    '''FROM = mailcon.mailfrom
-    TO = [mailcon.mailto] # must be a list
-    SUBJECT = "Holiday newsletter"
-    TEXT = msg
-    message = """\
-    From: %s
-    To: %s
-    Subject: %s
-    %s
-    """ % (FROM, ", ".join(TO), SUBJECT, TEXT)
-    # Send the mail
-    '''
-    server.sendmail(mailcon.mailfrom, mailcon.mailto, msgRoot.as_string())
+    msg = MIMEMultipart('alternative')
+    msg['Subject'] = "Holiday Newsletter"
+    msg['From'] = mailcon.mailfrom
+    msg['To'] = mailcon.mailto
+    part1 = MIMEText(msg, 'plain')
+    part2 = MIMEText(msg, 'html')
+    msg.attach(part1)
+    msg.attach(part2)
+    server.sendmail(mailcon.mailfrom, mailcon.mailto, msg.as_string())
     server.quit()
-    server.close()
+
