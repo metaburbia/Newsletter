@@ -1,68 +1,63 @@
+from datetime import datetime
+import time
+import flytime
+
+def daysToGo():
+    flyTime = datetime(*(time.strptime(flytime.FlightTime, "%Y-%m-%d")[0:6]))
+    #flyTime = datetime.strptime(flytime.FlightTime,'%Y-%m-%d')
+    currentDateTime = datetime.now() 
+    return (flyTime - currentDateTime).days 
+
+
 def createhtmlmail (html, text, subject):
     """Create a mime-message that will render HTML in popular
     MUAs, text in better ones"""
-    import MimeWriter
-    import mimetools
-    import cStringIO
+    
+    # email clients that don't want to display the HTML.
+    
+    from email.MIMEMultipart import MIMEMultipart
+    from email.MIMEText import MIMEText
     from email.MIMEImage import MIMEImage
-
-
     
-    out = cStringIO.StringIO() # output buffer for our message 
-    htmlin = cStringIO.StringIO(html)
-    txtin = cStringIO.StringIO(text)
+    # Define these once; use them twice!
+    strFrom = mailcon.mailfrom
+    strTo = mailcon.mailto
     
-    writer = MimeWriter.MimeWriter(out)
-    #
-    # set up some basic headers... we put subject here
-    # because smtplib.sendmail expects it to be in the
-    # message body
-    #
-    writer.addheader("Subject", subject)
-    writer.addheader("MIME-Version", "1.0")
-    #
-    # start the multipart section of the message
-    # multipart/alternative seems to work better
-    # on some MUAs than multipart/mixed
-    #
-    writer.startmultipartbody("alternative")
-    writer.flushheaders()
-    #
-    # the plain text section
-    #
-    subpart = writer.nextpart()
-    subpart.addheader("Content-Transfer-Encoding", "quoted-printable")
-    pout = subpart.startbody("text/plain", [("charset", 'us-ascii')])
-    mimetools.encode(txtin, pout, 'quoted-printable')
-    txtin.close()
-    #
-    # start the html subpart of the message
-    #
-    subpart = writer.nextpart()
-    subpart.addheader("Content-Transfer-Encoding", "quoted-printable")
-    #
-    #    get the countdown image
-    #
+    # Create the root message and fill in the from, to, and subject headers
+    
+
+    strTime =  time.strftime("%A, %d %B %Y")
+    msgRoot = MIMEMultipart('related')
+    msgRoot['Subject'] = 'US Holiday Newsletter ' + strTime
+    msgRoot['From'] = strFrom
+    msgRoot['To'] = (','.join(strTo))
+    msgRoot.preamble = 'This is a multi-part message in MIME format.'
+    
+    
+    # Encapsulate the plain and HTML versions of the message body in an
+    # 'alternative' part, so message agents can decide which they want to display.
+    msgAlternative = MIMEMultipart('alternative')
+    msgRoot.attach(msgAlternative)
+    
+    msgText = MIMEText('This is the alternative plain text message.')
+    msgAlternative.attach(msgText)
+    
+    # We reference the image in the IMG SRC attribute by the ID we give it below
+    #msgText = MIMEText('<b>Some <i>HTML</i> text</b> and an image.<br><img src="cid:image1"><br>Nifty!', 'html')
+    msgText = MIMEText(html, 'html')
+    msgAlternative.attach(msgText)
+    
+    # This example assumes the image is in the current directory
     fp = open('countdown.png', 'rb')
     msgImage = MIMEImage(fp.read())
     fp.close()
+    
+    # Define the image's ID as referenced above
     msgImage.add_header('Content-ID', '<image1>')
-    writer.attach(msgImage)
-    #
-    # returns us a file-ish object we can write to
-    #
-    pout = subpart.startbody("text/html", [("charset", 'us-ascii')])
-    mimetools.encode(htmlin, pout, 'quoted-printable')
-    htmlin.close()
-    #
-    # Now that we're done, close our writer and
-    # return the message body
-    #
-    writer.lastpart()
-    msg = out.getvalue()
-    out.close()
-    print msg
-    return msg
+    msgRoot.attach(msgImage)
+
+
+    return msgRoot.as_string()
 
 if __name__=="__main__":
     import smtplib
@@ -70,8 +65,7 @@ if __name__=="__main__":
     f = open("mailfile.txt", 'r')
     html = f.read()
     f.close()
-    #f = open("newsletter.txt", 'r')
-    #text = f.read()
+
     text = 'Read the email in hTML'
     subject = "Today's Newsletter!"
     message = createhtmlmail(html, text, subject)

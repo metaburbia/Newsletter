@@ -131,14 +131,16 @@ table.sidebar p.miniheader {
                      <td >
                          <h2>Hols are getting closer</h2>
                          <p style="font-size:1.6em;">
-                          <img align="middle"   style="display: inline; float:left; margin-right : 8px;"  src="cid:image1" />
+
                          
-                                                     <img align="middle"   style="display: inline; float:left; margin-right : 8px;"  src="countdown.png" />
-                         <!-- <img align="middle" src="http://development.cloudsoup.com/holiday/htdocs/img/daysleft.php?s=44&m=12" style="display: inline; float:left; margin-right : 8px;" />
- -->                           
+                                                     <img align="middle"   style="display: inline; float:left; margin-right : 8px;"  src="cid:image1" />
+                         
 <?php include('intro.inc');?>					
                            </p>                                                
-                     </td><td>&nbsp;</td>
+                     </td><td valign="bottom"><h4 class="meta">Exchange Rate</h4> 
+                     <p><?php include('currency.inc');?></p>   
+                     
+                     </td>
                      </tr>
                      <tr>
                         <td width="336" align="left" valign="top" class="mainbar">
@@ -158,15 +160,15 @@ include('weatherTable.inc');
      						<h2>News from round and about</h2>
    
      			
-     			     					<?php include('wyoming.inc');?>                        
+     			     					<?php include('newsfeeds.inc');?>                        
  </div>			
      						</td>                        
                         <td width="240" valign="top">
-                           <h4 class="meta">Exchange Rate</h4>                           
+                          
                            <table width="240" border="0" cellspacing="0" cellpadding="0" class="sidebar">
                               <tr>
                                  <td>
-									<p><?php include('currency.inc');?></p>                                 </td>
+									                              </td>
                               </tr>
 
                               <tr>

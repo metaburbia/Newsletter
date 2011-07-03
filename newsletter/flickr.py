@@ -16,7 +16,7 @@ import urllib2, string
 from xml.dom import minidom
 from xml.dom.minidom import parse, parseString
 
-def getFlickr(items=1):
+def getFlickr(items=10):
     # 
     url='http://api.flickr.com/services/feeds/photos_public.gne?tags=wyoming&amp;lang=en-us&amp;format=rss_200'
     handler = urllib2.urlopen(url)

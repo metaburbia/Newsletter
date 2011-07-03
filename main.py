@@ -28,6 +28,7 @@ weatherLocations = {
                     }
 def writeFile(filename, contents):
     text_file = open(filename, "w")
+    contents = contents.encode('utf-8')
     text_file.write(contents)
     text_file.close()
     
@@ -49,7 +50,6 @@ the temperature was  ' + weather['current_conditions']['temp_f'] + '&deg;F\
     return narr
 
 def daysToGo():
-
     flyTime = datetime(*(time.strptime(flytime.FlightTime, "%Y-%m-%d")[0:6]))
     #flyTime = datetime.strptime(flytime.FlightTime,'%Y-%m-%d')
     currentDateTime = datetime.now() 
