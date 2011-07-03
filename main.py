@@ -101,13 +101,11 @@ def createWeatherTable():
     table = table + '</table>'
     return table
 
-flickr.getFlickr()  
-
+  
+writeFile('flickr.inc',flickr.getFlickr())
 sys.exit('')
-
 intro = getNewsletterIntro()
 writeFile('intro.inc',intro)
-
 images.createCountdown(daysToGo())
 
 getMainCityDetails('Denver')
